@@ -1,0 +1,55 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class FindMiddleElement {
+
+    Node head;
+
+    public void findMiddle() {
+
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        System.out.println("Middle Element: " + slow.data);
+    }
+
+    public void printList() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+
+        FindMiddleElement list = new FindMiddleElement();
+
+        list.head = new Node(10);
+        list.head.next = new Node(20);
+        list.head.next.next = new Node(30);
+        list.head.next.next.next = new Node(40);
+        list.head.next.next.next.next = new Node(50);
+
+        list.printList();
+        list.findMiddle();
+    }
+}
