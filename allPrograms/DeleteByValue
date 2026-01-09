@@ -1,0 +1,65 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class DeleteByValue {
+
+    Node head;
+
+    public void deleteByValue(int value) {
+
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        if (head.data == value) {
+            head = head.next;
+            return;
+        }
+
+        Node prev = head;
+        Node curr = head.next;
+
+        while (curr != null && curr.data != value) {
+            prev = curr;
+            curr = curr.next;
+        }
+
+        if (curr == null) {
+            System.out.println("Value not found");
+            return;
+        }
+
+        prev.next = curr.next;
+    }
+
+    public void printList() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+
+        DeleteByValue list = new DeleteByValue();
+
+        list.head = new Node(10);
+        list.head.next = new Node(20);
+        list.head.next.next = new Node(30);
+        list.head.next.next.next = new Node(40);
+
+        list.printList();
+        list.deleteByValue(30);
+        list.printList();
+    }
+}
