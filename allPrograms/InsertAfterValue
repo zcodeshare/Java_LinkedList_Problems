@@ -1,0 +1,52 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class InsertAfterValue {
+
+    Node head;
+
+    public void insertAfterValue(int data, int value) {
+        Node newNode = new Node(data);
+
+        Node temp = head;
+        while (temp != null && temp.data != value) {
+            temp = temp.next;
+        }
+
+        if (temp == null) {
+            System.out.println("Value not found");
+            return;
+        }
+
+        newNode.next = temp.next;
+        temp.next = newNode;
+    }
+
+    public void printList() {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+
+        InsertAfterValue list = new InsertAfterValue();
+
+        list.insertAfterValue(10, 0);
+        list.insertAfterValue(20, 10);
+        list.insertAfterValue(30, 20);
+        list.insertAfterValue(25, 20);
+
+        list.printList();
+    }
+}
